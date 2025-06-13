@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Agenda-Contatos-Atualizado</string>
+    <string name="title_contact_list">Agenda de Contatos</string>
+    <string name="add_contact">Adicionar contato</string>
+    <string name="search_contacts_placeholder">Pesquisar contatos</string>
+    <string name="search">Pesquisar</string>
+    <string name="delete_contact_title">Excluir contato</string>
+    <string name="delete_contact_message">Tem certeza que deseja excluir %1$s?</string>
+    <string name="delete">Excluir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="new_contact">Novo Contato</string>
+    <string name="edit_contact">Editar Contato</string>
+    <string name="back">Voltar</string>
+    <string name="save">Salvar</string>
+    <string name="change_photo">Alterar Foto</string>
+    <string name="name">Nome</string>
+    <string name="phone">Telefone</string>
+    <string name="email">E-mail</string>
+    <string name="address">Endereço</string>
+    <string name="city">Cidade</string>
+    <string name="state">Estado</string>
+    <string name="cep">CEP</string>
 </resources>

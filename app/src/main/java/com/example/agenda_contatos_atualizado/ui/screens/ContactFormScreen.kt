@@ -16,8 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
 import com.example.agenda_contatos_atualizado.data.model.Contact
+import com.example.agenda_contatos_atualizado.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,10 +48,10 @@ fun ContactFormScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(if (contact == null) "Novo Contato" else "Editar Contato") },
+                title = { Text(if (contact == null) stringResource(R.string.new_contact) else stringResource(R.string.edit_contact)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, "Voltar")
+                        Icon(Icons.Default.ArrowBack, stringResource(R.string.back))
                     }
                 },
                 actions = {
@@ -68,7 +71,7 @@ fun ContactFormScreen(
                             onSave(newContact)
                         }
                     ) {
-                        Icon(Icons.Default.Save, "Salvar")
+                        Icon(Icons.Default.Save, stringResource(R.string.save))
                     }
                 }
             )
@@ -89,16 +92,18 @@ fun ContactFormScreen(
                     .padding(bottom = 16.dp)
             ) {
                 AsyncImage(
-                    model = photoUri,
+                    model = photoUri ?: "",
                     contentDescription = "Foto do contato",
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
+                    placeholder = painterResource(id = R.drawable.ic_person),
+                    error = painterResource(id = R.drawable.ic_person)
                 )
                 Button(
                     onClick = { launcher.launch("image/*") },
                     modifier = Modifier.align(Alignment.BottomEnd)
                 ) {
-                    Text("Alterar Foto")
+                    Text(stringResource(R.string.change_photo))
                 }
             }
 
@@ -106,7 +111,7 @@ fun ContactFormScreen(
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
-                label = { Text("Nome") },
+                label = { Text(stringResource(R.string.name)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -115,7 +120,7 @@ fun ContactFormScreen(
             OutlinedTextField(
                 value = phone,
                 onValueChange = { phone = it },
-                label = { Text("Telefone") },
+                label = { Text(stringResource(R.string.phone)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -124,7 +129,7 @@ fun ContactFormScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("E-mail") },
+                label = { Text(stringResource(R.string.email)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -133,7 +138,7 @@ fun ContactFormScreen(
             OutlinedTextField(
                 value = address,
                 onValueChange = { address = it },
-                label = { Text("Endereço") },
+                label = { Text(stringResource(R.string.address)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -146,14 +151,14 @@ fun ContactFormScreen(
                 OutlinedTextField(
                     value = city,
                     onValueChange = { city = it },
-                    label = { Text("Cidade") },
+                    label = { Text(stringResource(R.string.city)) },
                     modifier = Modifier.weight(1f)
                 )
 
                 OutlinedTextField(
                     value = state,
                     onValueChange = { state = it },
-                    label = { Text("Estado") },
+                    label = { Text(stringResource(R.string.state)) },
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -163,7 +168,7 @@ fun ContactFormScreen(
             OutlinedTextField(
                 value = cep,
                 onValueChange = { cep = it },
-                label = { Text("CEP") },
+                label = { Text(stringResource(R.string.cep)) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
