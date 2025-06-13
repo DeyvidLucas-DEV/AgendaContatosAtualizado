@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 val viewModel: ContactViewModel = viewModel(
                     factory = ContactViewModel.ContactViewModelFactory(repository)
                 )
-                val contacts by viewModel.contacts.collectAsState()
+                val contacts by viewModel.contacts.collectAsStateWithLifecycle()
 
                 NavHost(navController = navController, startDestination = "contactList") {
                     composable("contactList") {

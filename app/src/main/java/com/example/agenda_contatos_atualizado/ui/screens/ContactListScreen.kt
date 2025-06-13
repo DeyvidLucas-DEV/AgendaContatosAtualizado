@@ -9,9 +9,11 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.agenda_contatos_atualizado.data.model.Contact
 import com.example.agenda_contatos_atualizado.ui.components.ContactItem
+import com.example.agenda_contatos_atualizado.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,10 +31,10 @@ fun ContactListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Agenda de Contatos") },
+                title = { Text(stringResource(R.string.title_contact_list)) },
                 actions = {
                     IconButton(onClick = onAddContact) {
-                        Icon(Icons.Default.Add, "Adicionar contato")
+                        Icon(Icons.Default.Add, stringResource(R.string.add_contact))
                     }
                 }
             )
@@ -53,9 +55,9 @@ fun ContactListScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                placeholder = { Text("Pesquisar contatos") },
+                placeholder = { Text(stringResource(R.string.search_contacts_placeholder)) },
                 leadingIcon = {
-                    Icon(Icons.Default.Search, "Pesquisar")
+                    Icon(Icons.Default.Search, stringResource(R.string.search))
                 },
                 singleLine = true
             )
@@ -82,8 +84,8 @@ fun ContactListScreen(
     showDeleteDialog?.let { contact ->
         AlertDialog(
             onDismissRequest = { showDeleteDialog = null },
-            title = { Text("Excluir contato") },
-            text = { Text("Tem certeza que deseja excluir ${contact.name}?") },
+            title = { Text(stringResource(R.string.delete_contact_title)) },
+            text = { Text(stringResource(R.string.delete_contact_message, contact.name)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -91,12 +93,12 @@ fun ContactListScreen(
                         showDeleteDialog = null
                     }
                 ) {
-                    Text("Excluir")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = null }) {
-                    Text("Cancelar")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )

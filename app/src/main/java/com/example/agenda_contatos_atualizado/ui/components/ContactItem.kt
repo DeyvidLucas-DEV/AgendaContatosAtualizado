@@ -11,8 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import com.example.agenda_contatos_atualizado.data.model.Contact
+import com.example.agenda_contatos_atualizado.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,11 +39,13 @@ fun ContactItem(
         ) {
             // Foto do contato
             AsyncImage(
-                model = contact.photoUri,
+                model = contact.photoUri ?: "",
                 contentDescription = "Foto de ${contact.name}",
                 modifier = Modifier
                     .size(60.dp),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                placeholder = painterResource(id = R.drawable.ic_person),
+                error = painterResource(id = R.drawable.ic_person)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
